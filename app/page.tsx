@@ -25,11 +25,15 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { HeroTypewriter } from "@/components/hero-typewriter";
+import { Reveal } from "@/components/reveal";
 
 const LINKEDIN_URL = "https://www.linkedin.com/in/anderson-dias/";
 const WHATSAPP_URL =
   process.env.NEXT_PUBLIC_WHATSAPP_URL ?? "https://wa.me/5584999999999";
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://anderson-dias.dev";
+const HERO_TITLE =
+  "Desenvolvedor Full Stack para construir software com foco em crescimento real do seu negócio.";
 
 const metrics = [
   {
@@ -262,68 +266,75 @@ export default function Home() {
           type="application/ld+json"
         />
 
-        <section className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-          <div className="space-y-6">
-            <Badge className="bg-cyan-500/12 text-cyan-200 ring-1 ring-cyan-500/30" variant="secondary">
-              Disponível para novos projetos em 2026
-            </Badge>
-            <h1 className="max-w-3xl font-heading text-4xl leading-tight font-semibold tracking-tight text-balance sm:text-5xl">
-              Desenvolvedor Full Stack para construir software com foco em crescimento real do seu negócio.
-            </h1>
-            <p className="max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-              Planejo e implemento landing pages, sistemas web e integrações de ponta a ponta. Trabalho com
-              performance, SEO técnico e arquitetura limpa para transformar tráfego em oportunidade comercial.
-            </p>
-            <div className="flex flex-wrap items-center gap-3">
-              <Button
-                asChild
-                className="h-11 bg-emerald-400 px-6 text-base font-semibold text-black hover:bg-emerald-300"
-              >
-                <a href={WHATSAPP_URL} rel="noreferrer" target="_blank">
-                  <MessageCircle className="mr-1.5 size-4" />
-                  Chamar no WhatsApp
-                  <ArrowRight className="ml-1" />
-                </a>
-              </Button>
-              <Button asChild className="h-11 px-5" variant="outline">
-                <a href="#projetos">Ver soluções</a>
-              </Button>
+        <section className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+          <Reveal delay={0.04}>
+            <div className="space-y-6">
+              <Badge className="bg-cyan-500/12 text-cyan-200 ring-1 ring-cyan-500/30" variant="secondary">
+                Disponível para novos projetos em 2026
+              </Badge>
+              <h1 className="max-w-3xl font-heading text-4xl leading-tight font-semibold tracking-tight text-balance sm:text-5xl">
+                <HeroTypewriter text={HERO_TITLE} />
+              </h1>
+              <p className="max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+                Planejo e implemento landing pages, sistemas web e integrações de ponta a ponta. Trabalho com
+                performance, SEO técnico e arquitetura limpa para transformar tráfego em oportunidade comercial.
+              </p>
+              <div className="flex flex-wrap items-center gap-3">
+                <Button
+                  asChild
+                  className="h-11 bg-emerald-400 px-6 text-base font-semibold text-black hover:bg-emerald-300"
+                >
+                  <a href={WHATSAPP_URL} rel="noreferrer" target="_blank">
+                    <MessageCircle className="mr-1.5 size-4" />
+                    Chamar no WhatsApp
+                    <ArrowRight className="ml-1" />
+                  </a>
+                </Button>
+                <Button asChild className="h-11 px-5" variant="outline">
+                  <a href="#projetos">Ver soluções</a>
+                </Button>
+              </div>
             </div>
-          </div>
+          </Reveal>
 
-          <Card className="glass-card border-white/10 p-1">
-            <CardContent className="p-2.5 sm:p-3">
-              <div className="relative overflow-hidden rounded-2xl border border-white/10">
-                <Image
-                  alt="Foto de Anderson Dias, desenvolvedor full stack"
-                  className="h-auto w-full object-cover"
-                  placeholder="blur"
-                  priority
-                  sizes="(max-width: 1024px) 100vw, 40vw"
-                  src={profilePhoto}
-                />
-              </div>
-              <div className="mt-4 space-y-2">
-                <p className="font-heading text-lg font-medium">Anderson Dias</p>
-                <p className="text-sm text-muted-foreground">Desenvolvedor Full Stack</p>
-                <p className="font-mono text-xs tracking-wide text-cyan-200">Disponível para contratação remota</p>
-              </div>
-            </CardContent>
-          </Card>
+          <Reveal delay={0.12}>
+            <Card className="glass-card border-white/10 p-1">
+              <CardContent className="p-2.5 sm:p-3">
+                <div className="relative overflow-hidden rounded-2xl border border-white/10">
+                  <Image
+                    alt="Foto de Anderson Dias, desenvolvedor full stack"
+                    className="h-auto w-full object-cover"
+                    placeholder="blur"
+                    priority
+                    sizes="(max-width: 1024px) 100vw, 40vw"
+                    src={profilePhoto}
+                  />
+                </div>
+                <div className="mt-4 space-y-2">
+                  <p className="font-heading text-lg font-medium">Anderson Dias</p>
+                  <p className="text-sm text-muted-foreground">Desenvolvedor Full Stack</p>
+                  <p className="font-mono text-xs tracking-wide text-cyan-200">Disponível para contratação remota</p>
+                </div>
+              </CardContent>
+            </Card>
+          </Reveal>
         </section>
 
         <section className="grid gap-4 md:auto-rows-fr md:grid-cols-3">
-          {metrics.map((metric) => (
-            <Card className="glass-card-soft h-full min-h-[160px] border-white/10" key={metric.label}>
-              <CardContent className="flex h-full flex-col space-y-2 pt-5">
-                <p className="font-heading text-2xl font-semibold text-cyan-100">{metric.value}</p>
-                <p className="text-sm text-muted-foreground">{metric.label}</p>
-              </CardContent>
-            </Card>
+          {metrics.map((metric, index) => (
+            <Reveal delay={index * 0.08} key={metric.label}>
+              <Card className="glass-card-soft h-full min-h-[160px] border-white/10">
+                <CardContent className="flex h-full flex-col space-y-2 pt-5">
+                  <p className="font-heading text-2xl font-semibold text-cyan-100">{metric.value}</p>
+                  <p className="text-sm text-muted-foreground">{metric.label}</p>
+                </CardContent>
+              </Card>
+            </Reveal>
           ))}
         </section>
 
-        <section className="space-y-6" id="stack">
+        <Reveal delay={0.03}>
+          <section className="space-y-6" id="stack">
           <div className="space-y-2">
             <p className="font-mono text-xs tracking-[0.2em] text-cyan-200">STACK</p>
             <h2 className="font-heading text-3xl font-semibold tracking-tight">Tecnologias usadas no dia a dia</h2>
@@ -335,173 +346,196 @@ export default function Home() {
               </Badge>
             ))}
           </div>
-        </section>
+          </section>
+        </Reveal>
 
         <section className="grid gap-6 md:grid-cols-2" id="apresentacao">
-          <Card className="glass-card border-white/10">
-            <CardHeader>
-              <CardTitle>Apresentação profissional</CardTitle>
-              <CardDescription>
-                Desenvolvimento completo: da modelagem da solução à entrega final em produção.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-3 text-sm text-muted-foreground">
-              <p>Planejamento técnico com foco em impacto comercial e clareza de metas.</p>
-              <p>Implementação orientada a acessibilidade, performance e SEO técnico.</p>
-              <p>Arquitetura preparada para evolução sem perda de estabilidade.</p>
-            </CardContent>
-          </Card>
+          <Reveal delay={0.02}>
+            <Card className="glass-card border-white/10">
+              <CardHeader>
+                <CardTitle>Apresentação profissional</CardTitle>
+                <CardDescription>
+                  Desenvolvimento completo: da modelagem da solução à entrega final em produção.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-3 text-sm text-muted-foreground">
+                <p>Planejamento técnico com foco em impacto comercial e clareza de metas.</p>
+                <p>Implementação orientada a acessibilidade, performance e SEO técnico.</p>
+                <p>Arquitetura preparada para evolução sem perda de estabilidade.</p>
+              </CardContent>
+            </Card>
+          </Reveal>
 
-          <Card className="glass-card border-white/10">
-            <CardHeader>
-              <CardTitle>Presença profissional</CardTitle>
-              <CardDescription>Canal principal para networking, histórico técnico e contratação.</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-5">
-              <div className="rounded-xl border border-white/10 bg-white/8 p-4">
-                <p className="font-medium">LinkedIn</p>
-                <p className="mt-1 text-sm text-muted-foreground">Acompanhe minha trajetória e entre em contato por lá.</p>
-                <Button asChild className="mt-4 bg-cyan-500 text-black hover:bg-cyan-400" size="sm">
-                  <a href={LINKEDIN_URL} rel="noreferrer" target="_blank">
-                    Ver perfil
-                  </a>
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
+          <Reveal delay={0.11}>
+            <Card className="glass-card border-white/10">
+              <CardHeader>
+                <CardTitle>Presença profissional</CardTitle>
+                <CardDescription>Canal principal para networking, histórico técnico e contratação.</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-5">
+                <div className="rounded-xl border border-white/10 bg-white/8 p-4">
+                  <p className="font-medium">LinkedIn</p>
+                  <p className="mt-1 text-sm text-muted-foreground">Acompanhe minha trajetória e entre em contato por lá.</p>
+                  <Button asChild className="mt-4 bg-cyan-500 text-black hover:bg-cyan-400" size="sm">
+                    <a href={LINKEDIN_URL} rel="noreferrer" target="_blank">
+                      Ver perfil
+                    </a>
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          </Reveal>
         </section>
 
         <section className="space-y-6" id="servicos">
-          <div className="space-y-2">
-            <p className="font-mono text-xs tracking-[0.2em] text-cyan-200">SERVIÇOS</p>
-            <h2 className="font-heading text-3xl font-semibold tracking-tight">
-              Desenvolvimento, SEO técnico e infraestrutura
-            </h2>
-            <p className="max-w-3xl text-muted-foreground">
-              Entregas de ponta a ponta para empresas que precisam crescer com previsibilidade técnica.
-            </p>
-          </div>
+          <Reveal delay={0.02}>
+            <div className="space-y-2">
+              <p className="font-mono text-xs tracking-[0.2em] text-cyan-200">SERVIÇOS</p>
+              <h2 className="font-heading text-3xl font-semibold tracking-tight">
+                Desenvolvimento, SEO técnico e infraestrutura
+              </h2>
+              <p className="max-w-3xl text-muted-foreground">
+                Entregas de ponta a ponta para empresas que precisam crescer com previsibilidade técnica.
+              </p>
+            </div>
+          </Reveal>
           <div className="grid gap-4 md:auto-rows-fr md:grid-cols-3">
-            {services.map((service) => {
+            {services.map((service, index) => {
               const Icon = service.icon;
 
               return (
-                <Card className="glass-card h-full border-white/10" key={service.title}>
-                  <CardHeader>
-                    <div className="mb-2 inline-flex size-10 items-center justify-center rounded-xl bg-cyan-500/12 text-cyan-200 ring-1 ring-cyan-500/25">
-                      <Icon className="size-5" />
-                    </div>
-                    <CardTitle className="text-lg">{service.title}</CardTitle>
-                    <CardDescription>{service.description}</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <ul className="space-y-2 text-sm text-muted-foreground">
-                      {service.highlights.map((highlight) => (
-                        <li className="flex items-start gap-2" key={highlight}>
-                          <span className="mt-1 size-1.5 rounded-full bg-cyan-300" />
-                          <span>{highlight}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
+                <Reveal delay={index * 0.08} key={service.title}>
+                  <Card className="glass-card h-full border-white/10">
+                    <CardHeader>
+                      <div className="mb-2 inline-flex size-10 items-center justify-center rounded-xl bg-cyan-500/12 text-cyan-200 ring-1 ring-cyan-500/25">
+                        <Icon className="size-5" />
+                      </div>
+                      <CardTitle className="text-lg">{service.title}</CardTitle>
+                      <CardDescription>{service.description}</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <ul className="space-y-2 text-sm text-muted-foreground">
+                        {service.highlights.map((highlight) => (
+                          <li className="flex items-start gap-2" key={highlight}>
+                            <span className="mt-1 size-1.5 rounded-full bg-cyan-300" />
+                            <span>{highlight}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </CardContent>
+                  </Card>
+                </Reveal>
               );
             })}
           </div>
         </section>
 
         <section className="space-y-6" id="projetos">
-          <div className="space-y-2">
-            <p className="font-mono text-xs tracking-[0.2em] text-cyan-200">PROJETOS</p>
-            <h2 className="font-heading text-3xl font-semibold tracking-tight">Soluções que posso implementar</h2>
-            <p className="max-w-3xl text-muted-foreground">
-              Exemplos de escopos com alto impacto para aquisição de clientes e eficiência operacional.
-            </p>
-          </div>
+          <Reveal delay={0.02}>
+            <div className="space-y-2">
+              <p className="font-mono text-xs tracking-[0.2em] text-cyan-200">PROJETOS</p>
+              <h2 className="font-heading text-3xl font-semibold tracking-tight">Soluções que posso implementar</h2>
+              <p className="max-w-3xl text-muted-foreground">
+                Exemplos de escopos com alto impacto para aquisição de clientes e eficiência operacional.
+              </p>
+            </div>
+          </Reveal>
 
           <div className="grid gap-4 md:auto-rows-fr md:grid-cols-3">
-            {projects.map((project) => (
-              <Card className="glass-card h-full border-white/10" key={project.title}>
-                <CardHeader>
-                  <CardTitle className="text-lg">{project.title}</CardTitle>
-                  <CardDescription>{project.description}</CardDescription>
-                </CardHeader>
-                <CardContent className="flex flex-wrap gap-2">
-                  {project.tags.map((tag) => (
-                    <Badge className="border-white/15 bg-white/8 text-foreground" key={tag} variant="outline">
-                      {tag}
-                    </Badge>
-                  ))}
-                </CardContent>
-              </Card>
+            {projects.map((project, index) => (
+              <Reveal delay={index * 0.08} key={project.title}>
+                <Card className="glass-card h-full border-white/10">
+                  <CardHeader>
+                    <CardTitle className="text-lg">{project.title}</CardTitle>
+                    <CardDescription>{project.description}</CardDescription>
+                  </CardHeader>
+                  <CardContent className="flex flex-wrap gap-2">
+                    {project.tags.map((tag) => (
+                      <Badge className="border-white/15 bg-white/8 text-foreground" key={tag} variant="outline">
+                        {tag}
+                      </Badge>
+                    ))}
+                  </CardContent>
+                </Card>
+              </Reveal>
             ))}
           </div>
         </section>
 
         <section className="space-y-6" id="diferenciais">
-          <div className="space-y-2">
-            <p className="font-mono text-xs tracking-[0.2em] text-cyan-200">DIFERENCIAIS</p>
-            <h2 className="font-heading text-3xl font-semibold tracking-tight">Engenharia aplicada ao resultado</h2>
-          </div>
+          <Reveal delay={0.02}>
+            <div className="space-y-2">
+              <p className="font-mono text-xs tracking-[0.2em] text-cyan-200">DIFERENCIAIS</p>
+              <h2 className="font-heading text-3xl font-semibold tracking-tight">Engenharia aplicada ao resultado</h2>
+            </div>
+          </Reveal>
           <div className="grid gap-4 md:auto-rows-fr md:grid-cols-3">
-            {differentials.map((item) => {
+            {differentials.map((item, index) => {
               const Icon = item.icon;
 
               return (
-                <Card className="glass-card-soft h-full border-white/10" key={item.title}>
-                  <CardContent className="space-y-3 pt-5">
-                    <div className="inline-flex size-9 items-center justify-center rounded-lg bg-cyan-500/12 text-cyan-200 ring-1 ring-cyan-500/30">
-                      <Icon className="size-4" />
-                    </div>
-                    <h3 className="font-heading text-lg font-medium">{item.title}</h3>
-                    <p className="text-sm text-muted-foreground">{item.description}</p>
-                  </CardContent>
-                </Card>
+                <Reveal delay={index * 0.08} key={item.title}>
+                  <Card className="glass-card-soft h-full border-white/10">
+                    <CardContent className="space-y-3 pt-5">
+                      <div className="inline-flex size-9 items-center justify-center rounded-lg bg-cyan-500/12 text-cyan-200 ring-1 ring-cyan-500/30">
+                        <Icon className="size-4" />
+                      </div>
+                      <h3 className="font-heading text-lg font-medium">{item.title}</h3>
+                      <p className="text-sm text-muted-foreground">{item.description}</p>
+                    </CardContent>
+                  </Card>
+                </Reveal>
               );
             })}
           </div>
         </section>
 
         <section className="space-y-6" id="faq">
-          <div className="space-y-2">
-            <p className="font-mono text-xs tracking-[0.2em] text-cyan-200">FAQ</p>
-            <h2 className="font-heading text-3xl font-semibold tracking-tight">
-              Perguntas frequentes sobre contratação
-            </h2>
-          </div>
-          <Card className="glass-card border-white/10">
-            <CardContent className="pt-4">
-              <Accordion collapsible type="single">
-                {faqItems.map((item) => (
-                  <AccordionItem key={item.question} value={item.question}>
-                    <AccordionTrigger>{item.question}</AccordionTrigger>
-                    <AccordionContent>{item.answer}</AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
-            </CardContent>
-          </Card>
+          <Reveal delay={0.02}>
+            <div className="space-y-2">
+              <p className="font-mono text-xs tracking-[0.2em] text-cyan-200">FAQ</p>
+              <h2 className="font-heading text-3xl font-semibold tracking-tight">
+                Perguntas frequentes sobre contratação
+              </h2>
+            </div>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <Card className="glass-card border-white/10">
+              <CardContent className="pt-4">
+                <Accordion collapsible type="single">
+                  {faqItems.map((item) => (
+                    <AccordionItem key={item.question} value={item.question}>
+                      <AccordionTrigger>{item.question}</AccordionTrigger>
+                      <AccordionContent>{item.answer}</AccordionContent>
+                    </AccordionItem>
+                  ))}
+                </Accordion>
+              </CardContent>
+            </Card>
+          </Reveal>
         </section>
 
-        <section className="glass-card rounded-2xl border border-cyan-500/20 p-8 text-center">
-          <p className="font-mono text-xs tracking-[0.2em] text-cyan-200">PRÓXIMO PROJETO</p>
-          <h2 className="mt-3 font-heading text-3xl font-semibold tracking-tight text-balance">
-            Vamos construir sua próxima solução digital?
-          </h2>
-          <p className="mx-auto mt-3 max-w-2xl text-muted-foreground">
-            Me chame no WhatsApp para conversarmos sobre escopo, prioridades técnicas e prazo realista de entrega.
-          </p>
-          <Button
-            asChild
-            className="mt-6 h-11 bg-emerald-400 px-6 text-base font-semibold text-black hover:bg-emerald-300"
-          >
-            <a href={WHATSAPP_URL} rel="noreferrer" target="_blank">
-              <MessageCircle className="mr-1.5 size-4" />
-              Iniciar conversa
-              <ArrowRight className="ml-1" />
-            </a>
-          </Button>
-        </section>
+        <Reveal delay={0.04}>
+          <section className="glass-card rounded-2xl border border-cyan-500/20 p-8 text-center">
+            <p className="font-mono text-xs tracking-[0.2em] text-cyan-200">PRÓXIMO PROJETO</p>
+            <h2 className="mt-3 font-heading text-3xl font-semibold tracking-tight text-balance">
+              Vamos construir sua próxima solução digital?
+            </h2>
+            <p className="mx-auto mt-3 max-w-2xl text-muted-foreground">
+              Me chame no WhatsApp para conversarmos sobre escopo, prioridades técnicas e prazo realista de entrega.
+            </p>
+            <Button
+              asChild
+              className="mt-6 h-11 bg-emerald-400 px-6 text-base font-semibold text-black hover:bg-emerald-300"
+            >
+              <a href={WHATSAPP_URL} rel="noreferrer" target="_blank">
+                <MessageCircle className="mr-1.5 size-4" />
+                Iniciar conversa
+                <ArrowRight className="ml-1" />
+              </a>
+            </Button>
+          </section>
+        </Reveal>
       </main>
 
       <footer className="border-t border-white/10 py-8">
