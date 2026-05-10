@@ -4,6 +4,7 @@ import {
   BriefcaseBusiness,
   Gauge,
   Layers,
+  MessageCircle,
   Rocket,
   ShieldCheck,
 } from "lucide-react";
@@ -26,6 +27,8 @@ import {
 } from "@/components/ui/card";
 
 const LINKEDIN_URL = "https://www.linkedin.com/in/anderson-dias/";
+const WHATSAPP_URL =
+  process.env.NEXT_PUBLIC_WHATSAPP_URL ?? "https://wa.me/5584999999999";
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://anderson-dias.dev";
 
 const metrics = [
@@ -199,22 +202,55 @@ export default function Home() {
           <a className="font-mono text-xs tracking-[0.2em] text-cyan-200" href="#inicio">
             ANDERSON.DIAS
           </a>
-          <nav className="hidden items-center gap-6 text-sm text-muted-foreground md:flex">
-            <a className="transition-colors hover:text-foreground" href="#servicos">
-              Serviços
-            </a>
-            <a className="transition-colors hover:text-foreground" href="#projetos">
-              Projetos
-            </a>
-            <a className="transition-colors hover:text-foreground" href="#faq">
-              FAQ
-            </a>
-          </nav>
-          <Button asChild className="bg-cyan-500 text-black hover:bg-cyan-400">
-            <a href={LINKEDIN_URL} rel="noreferrer" target="_blank">
-              LinkedIn
-            </a>
-          </Button>
+          <div className="ml-4 flex items-center gap-3 md:gap-5">
+            <nav className="hidden items-center gap-1 text-[1.05rem] text-muted-foreground md:flex">
+              <a
+                className="rounded-md px-2.5 py-1.5 transition-all duration-200 hover:bg-white/7 hover:text-foreground"
+                href="#apresentacao"
+              >
+                Sobre
+              </a>
+              <a
+                className="rounded-md px-2.5 py-1.5 transition-all duration-200 hover:bg-white/7 hover:text-foreground"
+                href="#servicos"
+              >
+                Serviços
+              </a>
+              <a
+                className="rounded-md px-2.5 py-1.5 transition-all duration-200 hover:bg-white/7 hover:text-foreground"
+                href="#apresentacao"
+              >
+                Perfis
+              </a>
+              <a
+                className="rounded-md px-2.5 py-1.5 transition-all duration-200 hover:bg-white/7 hover:text-foreground"
+                href="#projetos"
+              >
+                Projetos
+              </a>
+              <a
+                className="rounded-md px-2.5 py-1.5 transition-all duration-200 hover:bg-white/7 hover:text-foreground"
+                href="#diferenciais"
+              >
+                Diferenciais
+              </a>
+              <a
+                className="rounded-md px-2.5 py-1.5 transition-all duration-200 hover:bg-white/7 hover:text-foreground"
+                href="#faq"
+              >
+                FAQ
+              </a>
+            </nav>
+            <Button
+              asChild
+              className="h-10 rounded-full bg-emerald-400 px-5 text-base font-semibold text-black hover:bg-emerald-300"
+            >
+              <a href={WHATSAPP_URL} rel="noreferrer" target="_blank">
+                <MessageCircle className="mr-1.5 size-4" />
+                Chamar no WhatsApp
+              </a>
+            </Button>
+          </div>
         </div>
       </header>
 
@@ -239,20 +275,24 @@ export default function Home() {
               performance, SEO técnico e arquitetura limpa para transformar tráfego em oportunidade comercial.
             </p>
             <div className="flex flex-wrap items-center gap-3">
-              <Button asChild className="bg-cyan-500 text-black hover:bg-cyan-400">
-                <a href={LINKEDIN_URL} rel="noreferrer" target="_blank">
-                  Falar no LinkedIn
+              <Button
+                asChild
+                className="h-11 bg-emerald-400 px-6 text-base font-semibold text-black hover:bg-emerald-300"
+              >
+                <a href={WHATSAPP_URL} rel="noreferrer" target="_blank">
+                  <MessageCircle className="mr-1.5 size-4" />
+                  Chamar no WhatsApp
                   <ArrowRight className="ml-1" />
                 </a>
               </Button>
-              <Button asChild variant="outline">
+              <Button asChild className="h-11 px-5" variant="outline">
                 <a href="#projetos">Ver soluções</a>
               </Button>
             </div>
           </div>
 
-          <Card className="glass-card border-white/10 p-2">
-            <CardContent className="p-4 sm:p-6">
+          <Card className="glass-card border-white/10 p-1">
+            <CardContent className="p-2.5 sm:p-3">
               <div className="relative overflow-hidden rounded-2xl border border-white/10">
                 <Image
                   alt="Foto de Anderson Dias, desenvolvedor full stack"
@@ -272,10 +312,10 @@ export default function Home() {
           </Card>
         </section>
 
-        <section className="grid gap-4 md:grid-cols-3">
+        <section className="grid gap-4 md:auto-rows-fr md:grid-cols-3">
           {metrics.map((metric) => (
-            <Card className="glass-card-soft border-white/10" key={metric.label}>
-              <CardContent className="space-y-2 pt-5">
+            <Card className="glass-card-soft h-full min-h-[160px] border-white/10" key={metric.label}>
+              <CardContent className="flex h-full flex-col space-y-2 pt-5">
                 <p className="font-heading text-2xl font-semibold text-cyan-100">{metric.value}</p>
                 <p className="text-sm text-muted-foreground">{metric.label}</p>
               </CardContent>
@@ -341,12 +381,12 @@ export default function Home() {
               Entregas de ponta a ponta para empresas que precisam crescer com previsibilidade técnica.
             </p>
           </div>
-          <div className="grid gap-4 md:grid-cols-3">
+          <div className="grid gap-4 md:auto-rows-fr md:grid-cols-3">
             {services.map((service) => {
               const Icon = service.icon;
 
               return (
-                <Card className="glass-card border-white/10" key={service.title}>
+                <Card className="glass-card h-full border-white/10" key={service.title}>
                   <CardHeader>
                     <div className="mb-2 inline-flex size-10 items-center justify-center rounded-xl bg-cyan-500/12 text-cyan-200 ring-1 ring-cyan-500/25">
                       <Icon className="size-5" />
@@ -379,9 +419,9 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid gap-4 md:grid-cols-3">
+          <div className="grid gap-4 md:auto-rows-fr md:grid-cols-3">
             {projects.map((project) => (
-              <Card className="glass-card border-white/10" key={project.title}>
+              <Card className="glass-card h-full border-white/10" key={project.title}>
                 <CardHeader>
                   <CardTitle className="text-lg">{project.title}</CardTitle>
                   <CardDescription>{project.description}</CardDescription>
@@ -403,12 +443,12 @@ export default function Home() {
             <p className="font-mono text-xs tracking-[0.2em] text-cyan-200">DIFERENCIAIS</p>
             <h2 className="font-heading text-3xl font-semibold tracking-tight">Engenharia aplicada ao resultado</h2>
           </div>
-          <div className="grid gap-4 md:grid-cols-3">
+          <div className="grid gap-4 md:auto-rows-fr md:grid-cols-3">
             {differentials.map((item) => {
               const Icon = item.icon;
 
               return (
-                <Card className="glass-card-soft border-white/10" key={item.title}>
+                <Card className="glass-card-soft h-full border-white/10" key={item.title}>
                   <CardContent className="space-y-3 pt-5">
                     <div className="inline-flex size-9 items-center justify-center rounded-lg bg-cyan-500/12 text-cyan-200 ring-1 ring-cyan-500/30">
                       <Icon className="size-4" />
@@ -449,10 +489,14 @@ export default function Home() {
             Vamos construir sua próxima solução digital?
           </h2>
           <p className="mx-auto mt-3 max-w-2xl text-muted-foreground">
-            Me chame no LinkedIn para conversarmos sobre escopo, prioridades técnicas e prazo realista de entrega.
+            Me chame no WhatsApp para conversarmos sobre escopo, prioridades técnicas e prazo realista de entrega.
           </p>
-          <Button asChild className="mt-6 bg-cyan-500 text-black hover:bg-cyan-400" size="lg">
-            <a href={LINKEDIN_URL} rel="noreferrer" target="_blank">
+          <Button
+            asChild
+            className="mt-6 h-11 bg-emerald-400 px-6 text-base font-semibold text-black hover:bg-emerald-300"
+          >
+            <a href={WHATSAPP_URL} rel="noreferrer" target="_blank">
+              <MessageCircle className="mr-1.5 size-4" />
               Iniciar conversa
               <ArrowRight className="ml-1" />
             </a>
