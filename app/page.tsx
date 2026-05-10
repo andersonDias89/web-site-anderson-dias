@@ -25,11 +25,13 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { HeroTypewriter } from "@/components/hero-typewriter";
+import { InstagramIcon, LinkedinIcon } from "@/components/icons/social-icons";
 import { WhatsAppIcon } from "@/components/icons/whatsapp-icon";
 import { Reveal } from "@/components/reveal";
 import { SiteHeader } from "@/components/site-header";
 
-const LINKEDIN_URL = "https://www.linkedin.com/in/anderson-dias/";
+const LINKEDIN_URL = "https://www.linkedin.com/in/anderson-dias-bb7b3122b/";
+const INSTAGRAM_URL = "https://www.instagram.com/anderdias_";
 const WHATSAPP_URL =
   process.env.NEXT_PUBLIC_WHATSAPP_URL ?? "https://wa.me/5584999999999";
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://anderson-dias.dev";
@@ -61,15 +63,13 @@ const metrics = [
 
 const stack = [
   "Next.js",
-  "React",
+  "Next.js",
   "TypeScript",
-  "Node.js",
-  "Tailwind CSS",
-  "shadcn/ui",
-  "PostgreSQL",
-  "Docker",
   "AWS",
-  "Integrações com APIs",
+  "Docker",
+  "JavaScript",
+  "React",
+  "Terraform",
 ];
 
 const services = [
@@ -262,7 +262,29 @@ export default function Home() {
                   />
                 </div>
                 <div className="mt-4 space-y-2">
-                  <p className="font-heading text-lg font-medium">Anderson Dias</p>
+                  <div className="flex items-center justify-between gap-3">
+                    <p className="font-heading text-lg font-medium">Anderson Dias</p>
+                    <div className="flex items-center gap-2">
+                      <a
+                        aria-label="LinkedIn de Anderson Dias"
+                        className="inline-flex size-8 items-center justify-center rounded-md border border-white/15 bg-white/8 text-cyan-100 transition-colors hover:bg-white/14 hover:text-foreground"
+                        href={LINKEDIN_URL}
+                        rel="noreferrer"
+                        target="_blank"
+                      >
+                        <LinkedinIcon className="size-3.5" />
+                      </a>
+                      <a
+                        aria-label="Instagram de Anderson Dias"
+                        className="inline-flex size-8 items-center justify-center rounded-md border border-white/15 bg-white/8 text-cyan-100 transition-colors hover:bg-white/14 hover:text-foreground"
+                        href={INSTAGRAM_URL}
+                        rel="noreferrer"
+                        target="_blank"
+                      >
+                        <InstagramIcon className="size-3.5" />
+                      </a>
+                    </div>
+                  </div>
                   <p className="font-mono text-xs tracking-wide text-cyan-200">Desenvolvedor Full Stack</p>
                 </div>
               </CardContent>
@@ -290,8 +312,12 @@ export default function Home() {
             <h2 className="font-heading text-2xl font-semibold tracking-tight sm:text-3xl">Tecnologias usadas no dia a dia</h2>
           </div>
           <div className="flex flex-wrap gap-2">
-            {stack.map((item) => (
-              <Badge className="border-white/15 bg-white/8 text-foreground" key={item} variant="outline">
+            {stack.map((item, index) => (
+              <Badge
+                className="border-emerald-300/30 bg-emerald-400/16 text-emerald-100 shadow-[inset_0_1px_0_rgb(255_255_255_/_0.2)]"
+                key={`${item}-${index}`}
+                variant="outline"
+              >
                 {item}
               </Badge>
             ))}
@@ -299,36 +325,63 @@ export default function Home() {
           </section>
         </Reveal>
 
-        <section className="grid gap-6 md:grid-cols-2" id="apresentacao">
+        <section className="grid gap-6 md:auto-rows-fr md:grid-cols-2" id="apresentacao">
           <Reveal delay={0.02}>
-            <Card className="glass-card border-white/10">
+            <Card className="glass-card h-full border-white/10">
               <CardHeader>
-                <CardTitle>Apresentação profissional</CardTitle>
+                <CardTitle className="text-lg">Apresentação profissional</CardTitle>
                 <CardDescription>
                   Desenvolvimento completo: da modelagem da solução à entrega final em produção.
                 </CardDescription>
               </CardHeader>
-              <CardContent className="space-y-3 text-sm text-muted-foreground">
-                <p>Planejamento técnico com foco em impacto comercial e clareza de metas.</p>
-                <p>Implementação orientada a acessibilidade, performance e SEO técnico.</p>
-                <p>Arquitetura preparada para evolução sem perda de estabilidade.</p>
+              <CardContent>
+                <ul className="space-y-2 text-sm text-muted-foreground">
+                  <li className="flex items-start gap-2">
+                    <span className="mt-1.5 size-1.5 rounded-full bg-cyan-300" />
+                    <span>Planejamento técnico com foco em impacto comercial e clareza de metas.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="mt-1.5 size-1.5 rounded-full bg-cyan-300" />
+                    <span>Implementação orientada a acessibilidade, performance e SEO técnico.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="mt-1.5 size-1.5 rounded-full bg-cyan-300" />
+                    <span>Arquitetura preparada para evolução sem perda de estabilidade.</span>
+                  </li>
+                </ul>
               </CardContent>
             </Card>
           </Reveal>
 
           <Reveal delay={0.11}>
-            <Card className="glass-card border-white/10">
+            <Card className="glass-card h-full border-white/10">
               <CardHeader>
-                <CardTitle>Presença profissional</CardTitle>
-                <CardDescription>Canal principal para networking, histórico técnico e contratação.</CardDescription>
+                <CardTitle className="text-lg">Presença profissional</CardTitle>
+                <CardDescription>
+                  Canal principal para networking, histórico técnico e contratação.
+                </CardDescription>
               </CardHeader>
-              <CardContent className="space-y-5">
-                <div className="rounded-xl border border-white/10 bg-white/8 p-4">
-                  <p className="font-medium">LinkedIn</p>
-                  <p className="mt-1 text-sm text-muted-foreground">Acompanhe minha trajetória e entre em contato por lá.</p>
-                  <Button asChild className="mt-4 bg-cyan-500 text-black hover:bg-cyan-400" size="sm">
-                    <a href={LINKEDIN_URL} rel="noreferrer" target="_blank">
-                      Ver perfil
+              <CardContent>
+                <div className="glass-card rounded-xl border border-white/10 p-4">
+                  <p className="font-medium">Fluxo de trabalho</p>
+                  <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
+                    <li className="flex items-start gap-2">
+                      <span className="mt-1.5 size-1.5 rounded-full bg-cyan-300" />
+                      <span>Diagnóstico rápido para mapear prioridade e objetivo do projeto.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="mt-1.5 size-1.5 rounded-full bg-cyan-300" />
+                      <span>Execução em etapas curtas com visibilidade clara de cada entrega.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="mt-1.5 size-1.5 rounded-full bg-cyan-300" />
+                      <span>Publicação e evolução contínua com foco em performance real.</span>
+                    </li>
+                  </ul>
+                  <Button asChild className="mt-4 bg-emerald-400 text-black hover:bg-emerald-300" size="sm">
+                    <a href={WHATSAPP_URL} rel="noreferrer" target="_blank">
+                      <WhatsAppIcon className="mr-1.5 size-4" />
+                      Iniciar conversa
                     </a>
                   </Button>
                 </div>
