@@ -4,7 +4,6 @@ import {
   BriefcaseBusiness,
   Gauge,
   Layers,
-  MessageCircle,
   Rocket,
   ShieldCheck,
 } from "lucide-react";
@@ -26,6 +25,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { HeroTypewriter } from "@/components/hero-typewriter";
+import { WhatsAppIcon } from "@/components/icons/whatsapp-icon";
 import { Reveal } from "@/components/reveal";
 import { SiteHeader } from "@/components/site-header";
 
@@ -239,7 +239,7 @@ export default function Home() {
                   className="h-11 w-full bg-emerald-400 px-6 text-base font-semibold text-black hover:bg-emerald-300 sm:w-auto"
                 >
                   <a href={WHATSAPP_URL} rel="noreferrer" target="_blank">
-                    <MessageCircle className="mr-1.5 size-4" />
+                    <WhatsAppIcon className="mr-1.5 size-4" />
                     Chamar no WhatsApp
                     <ArrowRight className="ml-1" />
                   </a>
@@ -479,7 +479,7 @@ export default function Home() {
               className="mt-6 h-11 bg-emerald-400 px-6 text-base font-semibold text-black hover:bg-emerald-300"
             >
               <a href={WHATSAPP_URL} rel="noreferrer" target="_blank">
-                <MessageCircle className="mr-1.5 size-4" />
+                <WhatsAppIcon className="mr-1.5 size-4" />
                 Iniciar conversa
                 <ArrowRight className="ml-1" />
               </a>

@@ -1,8 +1,9 @@
 "use client";
 
-import { Menu, MessageCircle, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
+import { WhatsAppIcon } from "@/components/icons/whatsapp-icon";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -68,7 +69,7 @@ export function SiteHeader({ navLinks, whatsappUrl }: SiteHeaderProps) {
             className="h-11 rounded-full bg-emerald-400 px-5 text-base font-semibold text-black hover:bg-emerald-300"
           >
             <a href={whatsappUrl} rel="noreferrer" target="_blank">
-              <MessageCircle className="mr-1.5 size-4" />
+              <WhatsAppIcon className="mr-1.5 size-4" />
               Chamar no WhatsApp
             </a>
           </Button>
@@ -116,7 +117,7 @@ export function SiteHeader({ navLinks, whatsappUrl }: SiteHeaderProps) {
               className="h-11 w-full rounded-full bg-emerald-400 px-5 text-base font-semibold text-black hover:bg-emerald-300"
             >
               <a href={whatsappUrl} onClick={closeMenu} rel="noreferrer" target="_blank">
-                <MessageCircle className="mr-1.5 size-4" />
+                <WhatsAppIcon className="mr-1.5 size-4" />
                 Chamar no WhatsApp
               </a>
             </Button>
