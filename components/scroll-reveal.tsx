@@ -7,14 +7,21 @@ export function ScrollReveal() {
     const elements = document.querySelectorAll<HTMLElement>("[data-reveal]");
     if (elements.length === 0) return;
 
+    const show = (element: Element) => element.classList.add("is-visible");
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    if (mediaQuery.matches) {
+      elements.forEach(show);
+      return;
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (!entry.isIntersecting) return;
 
-          const target = entry.target as HTMLElement;
-          target.classList.add("is-visible");
-          observer.unobserve(target);
+          show(entry.target);
+          observer.unobserve(entry.target);
         });
       },
       {

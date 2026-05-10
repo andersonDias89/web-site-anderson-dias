@@ -43,7 +43,24 @@ export function SiteHeader({ navLinks, whatsappUrl }: SiteHeaderProps) {
     };
   }, [isMenuOpen]);
 
+  useEffect(() => {
+    if (!isMenuOpen) return;
+
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", closeOnEscape);
+
+    return () => {
+      window.removeEventListener("keydown", closeOnEscape);
+    };
+  }, [isMenuOpen]);
+
   const closeMenu = () => setIsMenuOpen(false);
+  const mobileTabIndex = isMenuOpen ? undefined : -1;
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-background/55 backdrop-blur-xl">
@@ -90,6 +107,7 @@ export function SiteHeader({ navLinks, whatsappUrl }: SiteHeaderProps) {
       </div>
 
       <div
+        aria-hidden={!isMenuOpen}
         className={cn(
           "grid border-t border-white/10 bg-background/95 transition-all duration-300 md:hidden",
           isMenuOpen
@@ -106,6 +124,7 @@ export function SiteHeader({ navLinks, whatsappUrl }: SiteHeaderProps) {
                 href={link.href}
                 key={`mobile-${link.label}-${link.href}`}
                 onClick={closeMenu}
+                tabIndex={mobileTabIndex}
               >
                 {link.label}
               </a>
@@ -116,7 +135,13 @@ export function SiteHeader({ navLinks, whatsappUrl }: SiteHeaderProps) {
               asChild
               className="h-11 w-full rounded-full bg-emerald-400 px-5 text-base font-semibold text-black hover:bg-emerald-300"
             >
-              <a href={whatsappUrl} onClick={closeMenu} rel="noopener noreferrer" target="_blank">
+              <a
+                href={whatsappUrl}
+                onClick={closeMenu}
+                rel="noopener noreferrer"
+                tabIndex={mobileTabIndex}
+                target="_blank"
+              >
                 <WhatsAppIcon className="mr-1.5 size-4" />
                 Chamar no WhatsApp
               </a>

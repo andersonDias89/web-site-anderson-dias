@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="AD">
+  <rect width="64" height="64" rx="14" fill="#071727"/>
+  <path fill="#0a2a40" d="M0 0h64v64H0z"/>
+  <path fill="#071727" d="M0 0h64v64H0z"/>
+  <circle cx="52" cy="10" r="28" fill="#164e63" opacity=".45"/>
+  <circle cx="10" cy="54" r="26" fill="#065f46" opacity=".35"/>
+  <rect x="3" y="3" width="58" height="58" rx="12" fill="none" stroke="#a5f3fc" stroke-opacity=".38" stroke-width="2"/>
+  <text x="32" y="40" fill="#a5f3fc" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" letter-spacing="1.2" text-anchor="middle">AD</text>
+</svg>

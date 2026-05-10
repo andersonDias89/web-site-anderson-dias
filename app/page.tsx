@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import {
   ArrowRight,
   BriefcaseBusiness,
@@ -8,7 +9,6 @@ import {
   ShieldCheck,
 } from "lucide-react";
 
-import profilePhoto from "@/imagens/foto-anderson-dias.jpeg";
 import {
   Accordion,
   AccordionContent,
@@ -29,17 +29,20 @@ import { InstagramIcon, LinkedinIcon } from "@/components/icons/social-icons";
 import { WhatsAppIcon } from "@/components/icons/whatsapp-icon";
 import { Reveal } from "@/components/reveal";
 import { SiteHeader } from "@/components/site-header";
+import {
+  INSTAGRAM_URL,
+  LINKEDIN_URL,
+  PROFILE_IMAGE_PATH,
+  SITE_DESCRIPTION,
+  SITE_NAME,
+  SITE_URL,
+  WHATSAPP_URL,
+  absoluteUrl,
+  withBasePath,
+} from "@/lib/site";
 
-const LINKEDIN_URL = "https://www.linkedin.com/in/anderson-dias-bb7b3122b/";
-const INSTAGRAM_URL = "https://www.instagram.com/anderdias_";
-const WHATSAPP_URL =
-  process.env.NEXT_PUBLIC_WHATSAPP_URL ?? "https://wa.me/5584992154465";
 const PRIVACY_POLICY_PATH = "/politica-de-privacidade";
 const TERMS_OF_USE_PATH = "/termos-de-uso";
-const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://anderson-dias.dev").replace(/\/$/, "");
-const SITE_NAME = "Anderson Dias | Desenvolvedor Full Stack";
-const SITE_DESCRIPTION =
-  "Desenvolvedor Full Stack focado em landing pages, sistemas web e integrações para empresas que precisam de performance, SEO técnico e software orientado a resultado.";
 const HERO_TITLE =
   "Desenvolvedor Full Stack para construir software com foco em crescimento real do seu negócio.";
 const NAV_LINKS = [
@@ -68,7 +71,7 @@ const metrics = [
 
 const stack = [
   "Next.js",
-  "Next.js",
+  "Node.js",
   "TypeScript",
   "AWS",
   "Docker",
@@ -202,7 +205,7 @@ const jsonLd = {
       isPartOf: {
         "@id": `${SITE_URL}/#website`,
       },
-      primaryImageOfPage: `${SITE_URL}/images/anderson-dias-profile.jpg`,
+      primaryImageOfPage: absoluteUrl(PROFILE_IMAGE_PATH),
     },
     {
       "@type": "Person",
@@ -210,7 +213,7 @@ const jsonLd = {
       name: "Anderson Dias",
       jobTitle: "Desenvolvedor Full Stack",
       url: SITE_URL,
-      image: `${SITE_URL}/images/anderson-dias-profile.jpg`,
+      image: absoluteUrl(PROFILE_IMAGE_PATH),
       sameAs: [LINKEDIN_URL, INSTAGRAM_URL],
       knowsAbout: [
         "Next.js",
@@ -309,10 +312,11 @@ export default function Home() {
                   <Image
                     alt="Foto de Anderson Dias, desenvolvedor full stack"
                     className="h-auto w-full object-cover"
-                    placeholder="blur"
                     priority
                     sizes="(max-width: 1024px) 100vw, 40vw"
-                    src={profilePhoto}
+                    src={withBasePath(PROFILE_IMAGE_PATH)}
+                    width={1086}
+                    height={1448}
                   />
                 </div>
                 <div className="mt-4 space-y-2">
@@ -599,12 +603,12 @@ export default function Home() {
         <div className="mx-auto flex w-full max-w-6xl flex-col items-center justify-between gap-3 px-6 text-sm text-muted-foreground md:flex-row">
           <p>© {new Date().getFullYear()} Anderson Dias. Todos os direitos reservados.</p>
           <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
-            <a className="transition-colors hover:text-foreground" href={PRIVACY_POLICY_PATH}>
+            <Link className="transition-colors hover:text-foreground" href={PRIVACY_POLICY_PATH}>
               Política de Privacidade
-            </a>
-            <a className="transition-colors hover:text-foreground" href={TERMS_OF_USE_PATH}>
+            </Link>
+            <Link className="transition-colors hover:text-foreground" href={TERMS_OF_USE_PATH}>
               Termos de Uso
-            </a>
+            </Link>
             <a
               className="transition-colors hover:text-foreground"
               href={LINKEDIN_URL}

@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Anderson Dias | Landing Page
 
-## Getting Started
+Landing page profissional em Next.js 16, React 19 e Tailwind CSS 4 para apresentação de serviços de desenvolvimento full stack, SEO técnico, performance e integrações.
 
-First, run the development server:
+## Stack
+
+- Next.js 16 com App Router e export estático
+- React 19
+- TypeScript
+- Tailwind CSS 4
+- shadcn/ui
+
+## Desenvolvimento local
+
+Use Node.js 24.
 
 ```bash
+npm ci
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abra `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Validação
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run lint
+npm run build
+```
 
-## Learn More
+O build gera o site estático em `out/`, pronto para hospedagem em GitHub Pages ou outro servidor estático.
 
-To learn more about Next.js, take a look at the following resources:
+## Deploy no GitHub Pages
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+O workflow `.github/workflows/pages.yml` publica automaticamente o conteúdo de `out/` no GitHub Pages quando houver push na branch `main`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Para repositório de projeto, como `usuario/web-site-anderson-dias`, o workflow configura automaticamente:
 
-## Deploy on Vercel
+- `NEXT_PUBLIC_SITE_URL=https://usuario.github.io/web-site-anderson-dias`
+- `NEXT_PUBLIC_BASE_PATH=/web-site-anderson-dias`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Para repositório de usuário, como `usuario/usuario.github.io`, o workflow usa a raiz:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `NEXT_PUBLIC_SITE_URL=https://usuario.github.io`
+- `NEXT_PUBLIC_BASE_PATH=` vazio
+
+Variáveis opcionais do repositório:
+
+- `NEXT_PUBLIC_SITE_URL`: URL pública final, útil para domínio próprio.
+- `NEXT_PUBLIC_BASE_PATH`: subcaminho público. Use vazio para domínio próprio na raiz.
+- `NEXT_PUBLIC_WHATSAPP_URL`: link público do WhatsApp.
+- `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION`: token de verificação do Google.
+
+Depois de criar o repositório no GitHub, habilite Pages com source `GitHub Actions` em `Settings > Pages` caso o deploy ainda não esteja ativo.
+
+## Revisão técnica aplicada
+
+- Build estático habilitado com `output: "export"` e `trailingSlash: true`.
+- `next/image` configurado como `unoptimized` para funcionar em GitHub Pages sem servidor Next.
+- Base path configurável para evitar quebra de assets e links em `github.io/<repo>`.
+- URLs públicas centralizadas e validadas como HTTPS antes de serem usadas em links e metadados.
+- Removido uso de animação pesada por item em favor de IntersectionObserver simples.
+- Corrigido menu mobile para não expor links invisíveis no foco de teclado.
+- README e workflow de deploy adicionados.

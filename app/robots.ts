@@ -1,9 +1,7 @@
 import type { MetadataRoute } from "next";
+import { absoluteUrl } from "@/lib/site";
 
-const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://anderson-dias.dev").replace(
-  /\/$/,
-  ""
-);
+export const dynamic = "force-static";
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -18,6 +16,6 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
       },
     ],
-    sitemap: `${baseUrl}/sitemap.xml`,
+    sitemap: absoluteUrl("/sitemap.xml"),
   };
 }

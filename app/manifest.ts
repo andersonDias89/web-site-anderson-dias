@@ -1,21 +1,24 @@
 import type { MetadataRoute } from "next";
+import { SITE_DESCRIPTION, SITE_NAME, withBasePath } from "@/lib/site";
+
+export const dynamic = "force-static";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Anderson Dias | Desenvolvedor Full Stack",
+    name: SITE_NAME,
     short_name: "Anderson Dias",
-    description:
-      "Landing pages, sistemas web e integrações com foco em performance, SEO técnico e resultado de negócio.",
-    start_url: "/",
+    description: SITE_DESCRIPTION,
+    start_url: withBasePath("/"),
+    scope: withBasePath("/"),
     display: "standalone",
     background_color: "#071727",
     theme_color: "#071727",
     lang: "pt-BR",
     icons: [
       {
-        src: "/favicon.ico",
+        src: withBasePath("/icon.svg"),
         sizes: "any",
-        type: "image/x-icon",
+        type: "image/svg+xml",
       },
     ],
   };

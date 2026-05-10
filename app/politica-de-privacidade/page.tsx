@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-
-const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://anderson-dias.dev").replace(/\/$/, "");
-const LINKEDIN_URL = "https://www.linkedin.com/in/anderson-dias-bb7b3122b/";
-const WHATSAPP_URL = process.env.NEXT_PUBLIC_WHATSAPP_URL ?? "https://wa.me/5584992154465";
+import { LINKEDIN_URL, SITE_URL, WHATSAPP_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Política de Privacidade",

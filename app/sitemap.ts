@@ -1,30 +1,28 @@
 import type { MetadataRoute } from "next";
+import { PROFILE_IMAGE_PATH, absoluteUrl } from "@/lib/site";
 
-const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://anderson-dias.dev").replace(
-  /\/$/,
-  ""
-);
+export const dynamic = "force-static";
+
+const lastModified = new Date("2026-05-10T00:00:00-03:00");
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url: baseUrl,
-      lastModified: new Date(),
+      url: absoluteUrl("/"),
+      lastModified,
       changeFrequency: "weekly",
       priority: 1,
-      images: [
-        `${baseUrl}/images/anderson-dias-profile.jpg`,
-      ],
+      images: [absoluteUrl(PROFILE_IMAGE_PATH)],
     },
     {
-      url: `${baseUrl}/politica-de-privacidade`,
-      lastModified: new Date(),
+      url: absoluteUrl("/politica-de-privacidade"),
+      lastModified,
       changeFrequency: "yearly",
       priority: 0.5,
     },
     {
-      url: `${baseUrl}/termos-de-uso`,
-      lastModified: new Date(),
+      url: absoluteUrl("/termos-de-uso"),
+      lastModified,
       changeFrequency: "yearly",
       priority: 0.5,
     },

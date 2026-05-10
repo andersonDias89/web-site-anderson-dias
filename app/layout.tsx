@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { JetBrains_Mono, Manrope } from "next/font/google";
+import { ScrollReveal } from "@/components/scroll-reveal";
+import { SITE_DESCRIPTION, SITE_NAME, SITE_URL, withBasePath } from "@/lib/site";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -14,10 +16,6 @@ const jetBrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
-const siteName = "Anderson Dias | Desenvolvedor Full Stack";
-const siteDescription =
-  "Desenvolvedor Full Stack focado em landing pages, sistemas web e integrações para empresas que precisam de performance, SEO técnico e software orientado a resultado.";
-const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://anderson-dias.dev").replace(/\/$/, "");
 const googleSiteVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION;
 
 export const viewport: Viewport = {
@@ -28,13 +26,13 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: new URL(SITE_URL),
   applicationName: "Anderson Dias",
   title: {
-    default: siteName,
+    default: SITE_NAME,
     template: "%s | Anderson Dias",
   },
-  description: siteDescription,
+  description: SITE_DESCRIPTION,
   keywords: [
     "desenvolvedor full stack",
     "freelancer next.js",
@@ -44,7 +42,7 @@ export const metadata: Metadata = {
     "anderson dias",
   ],
   category: "technology",
-  authors: [{ name: "Anderson Dias", url: siteUrl }],
+  authors: [{ name: "Anderson Dias", url: SITE_URL }],
   creator: "Anderson Dias",
   publisher: "Anderson Dias",
   referrer: "origin-when-cross-origin",
@@ -54,21 +52,24 @@ export const metadata: Metadata = {
     telephone: false,
   },
   alternates: {
-    canonical: siteUrl,
+    canonical: SITE_URL,
   },
-  manifest: "/manifest.webmanifest",
+  manifest: withBasePath("/manifest.webmanifest"),
+  icons: {
+    icon: [{ url: withBasePath("/icon.svg"), type: "image/svg+xml" }],
+  },
   openGraph: {
     type: "website",
     locale: "pt_BR",
-    url: siteUrl,
-    siteName,
-    title: siteName,
-    description: siteDescription,
+    url: SITE_URL,
+    siteName: SITE_NAME,
+    title: SITE_NAME,
+    description: SITE_DESCRIPTION,
   },
   twitter: {
     card: "summary_large_image",
-    title: siteName,
-    description: siteDescription,
+    title: SITE_NAME,
+    description: SITE_DESCRIPTION,
   },
   robots: {
     index: true,
@@ -94,7 +95,10 @@ export default function RootLayout({
       lang="pt-BR"
       className={`${manrope.variable} ${jetBrainsMono.variable} dark h-full antialiased`}
     >
-      <body className="min-h-full bg-background text-foreground">{children}</body>
+      <body className="min-h-full bg-background text-foreground">
+        <ScrollReveal />
+        {children}
+      </body>
     </html>
   );
 }
