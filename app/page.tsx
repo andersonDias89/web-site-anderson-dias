@@ -244,9 +244,6 @@ export default function Home() {
                     <ArrowRight className="ml-1" />
                   </a>
                 </Button>
-                <Button asChild className="h-11 w-full px-5 sm:w-auto" variant="outline">
-                  <a href="#projetos">Ver soluções</a>
-                </Button>
               </div>
             </div>
           </Reveal>
@@ -266,8 +263,7 @@ export default function Home() {
                 </div>
                 <div className="mt-4 space-y-2">
                   <p className="font-heading text-lg font-medium">Anderson Dias</p>
-                  <p className="text-sm text-muted-foreground">Desenvolvedor Full Stack</p>
-                  <p className="font-mono text-xs tracking-wide text-cyan-200">Disponível para contratação remota</p>
+                  <p className="font-mono text-xs tracking-wide text-cyan-200">Desenvolvedor Full Stack</p>
                 </div>
               </CardContent>
             </Card>
