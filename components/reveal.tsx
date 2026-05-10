@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useRef, type ReactNode } from "react";
 import { motion, useInView } from "motion/react";
 
 import { cn } from "@/lib/utils";
@@ -19,12 +19,6 @@ const revealTransition = {
 export function Reveal({ children, className, delay = 0 }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { amount: 0.2, once: true });
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    if (!isInView) return;
-    setIsVisible(true);
-  }, [isInView]);
 
   return (
     <motion.div
@@ -32,7 +26,7 @@ export function Reveal({ children, className, delay = 0 }: RevealProps) {
       initial={{ opacity: 0, y: 26 }}
       ref={ref}
       transition={{ ...revealTransition, delay }}
-      animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 26 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 26 }}
     >
       {children}
     </motion.div>

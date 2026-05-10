@@ -27,6 +27,7 @@ import {
 } from "@/components/ui/card";
 import { HeroTypewriter } from "@/components/hero-typewriter";
 import { Reveal } from "@/components/reveal";
+import { SiteHeader } from "@/components/site-header";
 
 const LINKEDIN_URL = "https://www.linkedin.com/in/anderson-dias/";
 const WHATSAPP_URL =
@@ -34,6 +35,14 @@ const WHATSAPP_URL =
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://anderson-dias.dev";
 const HERO_TITLE =
   "Desenvolvedor Full Stack para construir software com foco em crescimento real do seu negócio.";
+const NAV_LINKS = [
+  { href: "#apresentacao", label: "Sobre" },
+  { href: "#servicos", label: "Serviços" },
+  { href: "#apresentacao", label: "Perfis" },
+  { href: "#projetos", label: "Projetos" },
+  { href: "#diferenciais", label: "Diferenciais" },
+  { href: "#faq", label: "FAQ" },
+];
 
 const metrics = [
   {
@@ -201,64 +210,9 @@ const jsonLd = {
 export default function Home() {
   return (
     <div className="page-shell">
-      <header className="sticky top-0 z-50 border-b border-white/10 bg-background/55 backdrop-blur-xl">
-        <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-4">
-          <a className="font-mono text-xs tracking-[0.2em] text-cyan-200" href="#inicio">
-            ANDERSON.DIAS
-          </a>
-          <div className="ml-4 flex items-center gap-3 md:gap-5">
-            <nav className="hidden items-center gap-1 text-[1.05rem] text-muted-foreground md:flex">
-              <a
-                className="rounded-md px-2.5 py-1.5 transition-all duration-200 hover:bg-white/7 hover:text-foreground"
-                href="#apresentacao"
-              >
-                Sobre
-              </a>
-              <a
-                className="rounded-md px-2.5 py-1.5 transition-all duration-200 hover:bg-white/7 hover:text-foreground"
-                href="#servicos"
-              >
-                Serviços
-              </a>
-              <a
-                className="rounded-md px-2.5 py-1.5 transition-all duration-200 hover:bg-white/7 hover:text-foreground"
-                href="#apresentacao"
-              >
-                Perfis
-              </a>
-              <a
-                className="rounded-md px-2.5 py-1.5 transition-all duration-200 hover:bg-white/7 hover:text-foreground"
-                href="#projetos"
-              >
-                Projetos
-              </a>
-              <a
-                className="rounded-md px-2.5 py-1.5 transition-all duration-200 hover:bg-white/7 hover:text-foreground"
-                href="#diferenciais"
-              >
-                Diferenciais
-              </a>
-              <a
-                className="rounded-md px-2.5 py-1.5 transition-all duration-200 hover:bg-white/7 hover:text-foreground"
-                href="#faq"
-              >
-                FAQ
-              </a>
-            </nav>
-            <Button
-              asChild
-              className="h-10 rounded-full bg-emerald-400 px-5 text-base font-semibold text-black hover:bg-emerald-300"
-            >
-              <a href={WHATSAPP_URL} rel="noreferrer" target="_blank">
-                <MessageCircle className="mr-1.5 size-4" />
-                Chamar no WhatsApp
-              </a>
-            </Button>
-          </div>
-        </div>
-      </header>
+      <SiteHeader navLinks={NAV_LINKS} whatsappUrl={WHATSAPP_URL} />
 
-      <main className="mx-auto flex w-full max-w-6xl flex-col gap-16 px-6 py-10 md:py-16" id="inicio">
+      <main className="mx-auto flex w-full max-w-6xl flex-col gap-12 px-4 py-8 sm:px-6 sm:py-10 md:gap-16 md:py-16" id="inicio">
         <script
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
@@ -266,23 +220,23 @@ export default function Home() {
           type="application/ld+json"
         />
 
-        <section className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+        <section className="grid gap-6 sm:gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
           <Reveal delay={0.04}>
-            <div className="space-y-6">
-              <Badge className="bg-cyan-500/12 text-cyan-200 ring-1 ring-cyan-500/30" variant="secondary">
+            <div className="space-y-5 sm:space-y-6">
+              <Badge className="bg-cyan-500/12 text-xs text-cyan-200 ring-1 ring-cyan-500/30 sm:text-sm" variant="secondary">
                 Disponível para novos projetos em 2026
               </Badge>
-              <h1 className="max-w-3xl font-heading text-4xl leading-tight font-semibold tracking-tight text-balance sm:text-5xl">
+              <h1 className="max-w-3xl font-heading text-[2.45rem] leading-[1.08] font-semibold tracking-tight text-balance sm:text-5xl sm:leading-tight">
                 <HeroTypewriter text={HERO_TITLE} />
               </h1>
-              <p className="max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+              <p className="max-w-2xl text-[1.05rem] leading-relaxed text-muted-foreground sm:text-lg">
                 Planejo e implemento landing pages, sistemas web e integrações de ponta a ponta. Trabalho com
                 performance, SEO técnico e arquitetura limpa para transformar tráfego em oportunidade comercial.
               </p>
-              <div className="flex flex-wrap items-center gap-3">
+              <div className="flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center">
                 <Button
                   asChild
-                  className="h-11 bg-emerald-400 px-6 text-base font-semibold text-black hover:bg-emerald-300"
+                  className="h-11 w-full bg-emerald-400 px-6 text-base font-semibold text-black hover:bg-emerald-300 sm:w-auto"
                 >
                   <a href={WHATSAPP_URL} rel="noreferrer" target="_blank">
                     <MessageCircle className="mr-1.5 size-4" />
@@ -290,7 +244,7 @@ export default function Home() {
                     <ArrowRight className="ml-1" />
                   </a>
                 </Button>
-                <Button asChild className="h-11 px-5" variant="outline">
+                <Button asChild className="h-11 w-full px-5 sm:w-auto" variant="outline">
                   <a href="#projetos">Ver soluções</a>
                 </Button>
               </div>
@@ -320,10 +274,10 @@ export default function Home() {
           </Reveal>
         </section>
 
-        <section className="grid gap-4 md:auto-rows-fr md:grid-cols-3">
+        <section className="grid gap-3.5 md:auto-rows-fr md:grid-cols-3">
           {metrics.map((metric, index) => (
             <Reveal delay={index * 0.08} key={metric.label}>
-              <Card className="glass-card-soft h-full min-h-[160px] border-white/10">
+              <Card className="glass-card-soft h-full min-h-[148px] border-white/10 md:min-h-[160px]">
                 <CardContent className="flex h-full flex-col space-y-2 pt-5">
                   <p className="font-heading text-2xl font-semibold text-cyan-100">{metric.value}</p>
                   <p className="text-sm text-muted-foreground">{metric.label}</p>
@@ -334,10 +288,10 @@ export default function Home() {
         </section>
 
         <Reveal delay={0.03}>
-          <section className="space-y-6" id="stack">
+          <section className="space-y-5 sm:space-y-6" id="stack">
           <div className="space-y-2">
             <p className="font-mono text-xs tracking-[0.2em] text-cyan-200">STACK</p>
-            <h2 className="font-heading text-3xl font-semibold tracking-tight">Tecnologias usadas no dia a dia</h2>
+            <h2 className="font-heading text-2xl font-semibold tracking-tight sm:text-3xl">Tecnologias usadas no dia a dia</h2>
           </div>
           <div className="flex flex-wrap gap-2">
             {stack.map((item) => (
@@ -391,7 +345,7 @@ export default function Home() {
           <Reveal delay={0.02}>
             <div className="space-y-2">
               <p className="font-mono text-xs tracking-[0.2em] text-cyan-200">SERVIÇOS</p>
-              <h2 className="font-heading text-3xl font-semibold tracking-tight">
+              <h2 className="font-heading text-2xl font-semibold tracking-tight sm:text-3xl">
                 Desenvolvimento, SEO técnico e infraestrutura
               </h2>
               <p className="max-w-3xl text-muted-foreground">
@@ -434,7 +388,7 @@ export default function Home() {
           <Reveal delay={0.02}>
             <div className="space-y-2">
               <p className="font-mono text-xs tracking-[0.2em] text-cyan-200">PROJETOS</p>
-              <h2 className="font-heading text-3xl font-semibold tracking-tight">Soluções que posso implementar</h2>
+              <h2 className="font-heading text-2xl font-semibold tracking-tight sm:text-3xl">Soluções que posso implementar</h2>
               <p className="max-w-3xl text-muted-foreground">
                 Exemplos de escopos com alto impacto para aquisição de clientes e eficiência operacional.
               </p>
@@ -466,7 +420,7 @@ export default function Home() {
           <Reveal delay={0.02}>
             <div className="space-y-2">
               <p className="font-mono text-xs tracking-[0.2em] text-cyan-200">DIFERENCIAIS</p>
-              <h2 className="font-heading text-3xl font-semibold tracking-tight">Engenharia aplicada ao resultado</h2>
+              <h2 className="font-heading text-2xl font-semibold tracking-tight sm:text-3xl">Engenharia aplicada ao resultado</h2>
             </div>
           </Reveal>
           <div className="grid gap-4 md:auto-rows-fr md:grid-cols-3">
@@ -494,7 +448,7 @@ export default function Home() {
           <Reveal delay={0.02}>
             <div className="space-y-2">
               <p className="font-mono text-xs tracking-[0.2em] text-cyan-200">FAQ</p>
-              <h2 className="font-heading text-3xl font-semibold tracking-tight">
+              <h2 className="font-heading text-2xl font-semibold tracking-tight sm:text-3xl">
                 Perguntas frequentes sobre contratação
               </h2>
             </div>
@@ -516,9 +470,9 @@ export default function Home() {
         </section>
 
         <Reveal delay={0.04}>
-          <section className="glass-card rounded-2xl border border-cyan-500/20 p-8 text-center">
+          <section className="glass-card rounded-2xl border border-cyan-500/20 px-5 py-7 text-center sm:p-8">
             <p className="font-mono text-xs tracking-[0.2em] text-cyan-200">PRÓXIMO PROJETO</p>
-            <h2 className="mt-3 font-heading text-3xl font-semibold tracking-tight text-balance">
+            <h2 className="mt-3 font-heading text-2xl font-semibold tracking-tight text-balance sm:text-3xl">
               Vamos construir sua próxima solução digital?
             </h2>
             <p className="mx-auto mt-3 max-w-2xl text-muted-foreground">
