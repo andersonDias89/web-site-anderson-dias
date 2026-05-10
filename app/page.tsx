@@ -33,7 +33,9 @@ import { SiteHeader } from "@/components/site-header";
 const LINKEDIN_URL = "https://www.linkedin.com/in/anderson-dias-bb7b3122b/";
 const INSTAGRAM_URL = "https://www.instagram.com/anderdias_";
 const WHATSAPP_URL =
-  process.env.NEXT_PUBLIC_WHATSAPP_URL ?? "https://wa.me/5584999999999";
+  process.env.NEXT_PUBLIC_WHATSAPP_URL ?? "https://wa.me/5584992154465";
+const PRIVACY_POLICY_PATH = "/politica-de-privacidade";
+const TERMS_OF_USE_PATH = "/termos-de-uso";
 const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://anderson-dias.dev").replace(/\/$/, "");
 const SITE_NAME = "Anderson Dias | Desenvolvedor Full Stack";
 const SITE_DESCRIPTION =
@@ -51,8 +53,8 @@ const NAV_LINKS = [
 
 const metrics = [
   {
-    value: "95+",
-    label: "Meta de performance no Lighthouse",
+    value: "Escopo Claro",
+    label: "Planejamento técnico e comercial desde o início para reduzir retrabalho.",
   },
   {
     value: "Mobile First",
@@ -596,14 +598,22 @@ export default function Home() {
       <footer className="border-t border-white/10 py-8">
         <div className="mx-auto flex w-full max-w-6xl flex-col items-center justify-between gap-3 px-6 text-sm text-muted-foreground md:flex-row">
           <p>© {new Date().getFullYear()} Anderson Dias. Todos os direitos reservados.</p>
-          <a
-            className="transition-colors hover:text-foreground"
-            href={LINKEDIN_URL}
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            LinkedIn
-          </a>
+          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
+            <a className="transition-colors hover:text-foreground" href={PRIVACY_POLICY_PATH}>
+              Política de Privacidade
+            </a>
+            <a className="transition-colors hover:text-foreground" href={TERMS_OF_USE_PATH}>
+              Termos de Uso
+            </a>
+            <a
+              className="transition-colors hover:text-foreground"
+              href={LINKEDIN_URL}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              LinkedIn
+            </a>
+          </div>
         </div>
       </footer>
     </div>

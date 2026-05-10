@@ -16,5 +16,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
         `${baseUrl}/images/anderson-dias-profile.jpg`,
       ],
     },
+    {
+      url: `${baseUrl}/politica-de-privacidade`,
+      lastModified: new Date(),
+      changeFrequency: "yearly",
+      priority: 0.5,
+    },
+    {
+      url: `${baseUrl}/termos-de-uso`,
+      lastModified: new Date(),
+      changeFrequency: "yearly",
+      priority: 0.5,
+    },
   ];
 }
