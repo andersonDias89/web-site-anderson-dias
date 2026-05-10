@@ -68,7 +68,7 @@ export function SiteHeader({ navLinks, whatsappUrl }: SiteHeaderProps) {
             asChild
             className="h-11 rounded-full bg-emerald-400 px-5 text-base font-semibold text-black hover:bg-emerald-300"
           >
-            <a href={whatsappUrl} rel="noreferrer" target="_blank">
+            <a href={whatsappUrl} rel="noopener noreferrer" target="_blank">
               <WhatsAppIcon className="mr-1.5 size-4" />
               Chamar no WhatsApp
             </a>
@@ -116,7 +116,7 @@ export function SiteHeader({ navLinks, whatsappUrl }: SiteHeaderProps) {
               asChild
               className="h-11 w-full rounded-full bg-emerald-400 px-5 text-base font-semibold text-black hover:bg-emerald-300"
             >
-              <a href={whatsappUrl} onClick={closeMenu} rel="noreferrer" target="_blank">
+              <a href={whatsappUrl} onClick={closeMenu} rel="noopener noreferrer" target="_blank">
                 <WhatsAppIcon className="mr-1.5 size-4" />
                 Chamar no WhatsApp
               </a>

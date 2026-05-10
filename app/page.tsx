@@ -34,7 +34,10 @@ const LINKEDIN_URL = "https://www.linkedin.com/in/anderson-dias-bb7b3122b/";
 const INSTAGRAM_URL = "https://www.instagram.com/anderdias_";
 const WHATSAPP_URL =
   process.env.NEXT_PUBLIC_WHATSAPP_URL ?? "https://wa.me/5584999999999";
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://anderson-dias.dev";
+const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://anderson-dias.dev").replace(/\/$/, "");
+const SITE_NAME = "Anderson Dias | Desenvolvedor Full Stack";
+const SITE_DESCRIPTION =
+  "Desenvolvedor Full Stack focado em landing pages, sistemas web e integrações para empresas que precisam de performance, SEO técnico e software orientado a resultado.";
 const HERO_TITLE =
   "Desenvolvedor Full Stack para construir software com foco em crescimento real do seu negócio.";
 const NAV_LINKS = [
@@ -177,12 +180,36 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      url: SITE_URL,
+      name: SITE_NAME,
+      inLanguage: "pt-BR",
+      description: SITE_DESCRIPTION,
+      publisher: {
+        "@id": `${SITE_URL}/#person`,
+      },
+    },
+    {
+      "@type": "WebPage",
+      "@id": `${SITE_URL}/#webpage`,
+      url: SITE_URL,
+      name: SITE_NAME,
+      description: SITE_DESCRIPTION,
+      inLanguage: "pt-BR",
+      isPartOf: {
+        "@id": `${SITE_URL}/#website`,
+      },
+      primaryImageOfPage: `${SITE_URL}/images/anderson-dias-profile.jpg`,
+    },
+    {
       "@type": "Person",
+      "@id": `${SITE_URL}/#person`,
       name: "Anderson Dias",
       jobTitle: "Desenvolvedor Full Stack",
       url: SITE_URL,
       image: `${SITE_URL}/images/anderson-dias-profile.jpg`,
-      sameAs: [LINKEDIN_URL],
+      sameAs: [LINKEDIN_URL, INSTAGRAM_URL],
       knowsAbout: [
         "Next.js",
         "React",
@@ -194,15 +221,36 @@ const jsonLd = {
     },
     {
       "@type": "ProfessionalService",
-      name: "Serviços de desenvolvimento de software - Anderson Dias",
+      "@id": `${SITE_URL}/#service`,
+      name: "Anderson Dias - Desenvolvimento de software",
       description:
         "Desenvolvimento de landing pages, sistemas web e integrações com foco em performance, SEO técnico e resultado de negócio.",
       provider: {
-        "@type": "Person",
-        name: "Anderson Dias",
+        "@id": `${SITE_URL}/#person`,
       },
-      areaServed: "BR",
+      areaServed: {
+        "@type": "Country",
+        name: "Brasil",
+      },
+      serviceType: [
+        "Desenvolvimento de landing pages",
+        "Desenvolvimento de sistemas web",
+        "Integrações de APIs",
+        "SEO técnico",
+      ],
       url: SITE_URL,
+    },
+    {
+      "@type": "FAQPage",
+      "@id": `${SITE_URL}/#faq`,
+      mainEntity: faqItems.map((item) => ({
+        "@type": "Question",
+        name: item.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: item.answer,
+        },
+      })),
     },
   ],
 };
@@ -212,7 +260,11 @@ export default function Home() {
     <div className="page-shell">
       <SiteHeader navLinks={NAV_LINKS} whatsappUrl={WHATSAPP_URL} />
 
-      <main className="mx-auto flex w-full max-w-6xl flex-col gap-12 px-4 py-8 sm:px-6 sm:py-10 md:gap-16 md:py-16" id="inicio">
+      <main
+        aria-label="Landing page de serviços de desenvolvimento de software"
+        className="mx-auto flex w-full max-w-6xl flex-col gap-12 px-4 py-8 sm:px-6 sm:py-10 md:gap-16 md:py-16"
+        id="inicio"
+      >
         <script
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
@@ -238,7 +290,7 @@ export default function Home() {
                   asChild
                   className="h-11 w-full bg-emerald-400 px-6 text-base font-semibold text-black hover:bg-emerald-300 sm:w-auto"
                 >
-                  <a href={WHATSAPP_URL} rel="noreferrer" target="_blank">
+                  <a href={WHATSAPP_URL} rel="noopener noreferrer" target="_blank">
                     <WhatsAppIcon className="mr-1.5 size-4" />
                     Chamar no WhatsApp
                     <ArrowRight className="ml-1" />
@@ -269,7 +321,7 @@ export default function Home() {
                         aria-label="LinkedIn de Anderson Dias"
                         className="inline-flex size-8 items-center justify-center rounded-md border border-white/15 bg-white/8 text-cyan-100 transition-colors hover:bg-white/14 hover:text-foreground"
                         href={LINKEDIN_URL}
-                        rel="noreferrer"
+                        rel="me noopener noreferrer"
                         target="_blank"
                       >
                         <LinkedinIcon className="size-3.5" />
@@ -278,7 +330,7 @@ export default function Home() {
                         aria-label="Instagram de Anderson Dias"
                         className="inline-flex size-8 items-center justify-center rounded-md border border-white/15 bg-white/8 text-cyan-100 transition-colors hover:bg-white/14 hover:text-foreground"
                         href={INSTAGRAM_URL}
-                        rel="noreferrer"
+                        rel="me noopener noreferrer"
                         target="_blank"
                       >
                         <InstagramIcon className="size-3.5" />
@@ -379,7 +431,7 @@ export default function Home() {
                     </li>
                   </ul>
                   <Button asChild className="mt-4 bg-emerald-400 text-black hover:bg-emerald-300" size="sm">
-                    <a href={WHATSAPP_URL} rel="noreferrer" target="_blank">
+                    <a href={WHATSAPP_URL} rel="noopener noreferrer" target="_blank">
                       <WhatsAppIcon className="mr-1.5 size-4" />
                       Iniciar conversa
                     </a>
@@ -531,7 +583,7 @@ export default function Home() {
               asChild
               className="mt-6 h-11 bg-emerald-400 px-6 text-base font-semibold text-black hover:bg-emerald-300"
             >
-              <a href={WHATSAPP_URL} rel="noreferrer" target="_blank">
+              <a href={WHATSAPP_URL} rel="noopener noreferrer" target="_blank">
                 <WhatsAppIcon className="mr-1.5 size-4" />
                 Iniciar conversa
                 <ArrowRight className="ml-1" />
@@ -544,7 +596,12 @@ export default function Home() {
       <footer className="border-t border-white/10 py-8">
         <div className="mx-auto flex w-full max-w-6xl flex-col items-center justify-between gap-3 px-6 text-sm text-muted-foreground md:flex-row">
           <p>© {new Date().getFullYear()} Anderson Dias. Todos os direitos reservados.</p>
-          <a className="transition-colors hover:text-foreground" href={LINKEDIN_URL} rel="noreferrer" target="_blank">
+          <a
+            className="transition-colors hover:text-foreground"
+            href={LINKEDIN_URL}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
             LinkedIn
           </a>
         </div>
