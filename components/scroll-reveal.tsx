@@ -7,13 +7,8 @@ export function ScrollReveal() {
     const selector = "[data-reveal]";
     const seen = new WeakSet<Element>();
     const show = (element: Element) => element.classList.add("is-visible");
-    const forceMotion = process.env.NODE_ENV === "development" && new URLSearchParams(window.location.search).get("motion") === "1";
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const shouldSkipMotion = (!forceMotion && mediaQuery.matches) || !("IntersectionObserver" in window);
-
-    if (forceMotion) {
-      document.documentElement.setAttribute("data-force-motion", "1");
-    }
+    const shouldSkipMotion = mediaQuery.matches || !("IntersectionObserver" in window);
 
     const observer = shouldSkipMotion
       ? null
@@ -71,10 +66,6 @@ export function ScrollReveal() {
     });
 
     return () => {
-      if (forceMotion) {
-        document.documentElement.removeAttribute("data-force-motion");
-      }
-
       observer?.disconnect();
       mutationObserver.disconnect();
     };

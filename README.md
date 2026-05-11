@@ -62,20 +62,12 @@ Este projeto inclui:
 
 Importante: no GitHub Pages, os cabeçalhos HTTP são gerenciados pela plataforma. O arquivo `_headers` não altera o `Cache-Control` lá.
 
-## Debug de animação em dev
-
-Se a animação de reveal não aparecer no `npm run dev`, teste:
-
-- `http://localhost:3000/?motion=1`
-
-Isso força animação apenas em desenvolvimento, útil quando o navegador/sistema está com `prefers-reduced-motion: reduce`.
-
 ## Revisão técnica aplicada
 
 - Build estático habilitado com `output: "export"` e `trailingSlash: true`.
 - `next/image` configurado como `unoptimized` para funcionar em GitHub Pages sem servidor Next.
 - Base path configurável para evitar quebra de assets e links em `github.io/<repo>`.
 - URLs públicas centralizadas e validadas como HTTPS antes de serem usadas em links e metadados.
-- Removido uso de animação pesada por item em favor de IntersectionObserver simples.
+- Removido uso de animação pesada por item em favor de IntersectionObserver simples com respeito a `prefers-reduced-motion`.
 - Corrigido menu mobile para não expor links invisíveis no foco de teclado.
 - README e workflow de deploy adicionados.
