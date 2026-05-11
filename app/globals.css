@@ -202,20 +202,20 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html {
+  html:not([data-force-motion="1"]) {
     scroll-behavior: auto;
   }
 
-  *,
-  *::before,
-  *::after {
+  html:not([data-force-motion="1"]) *,
+  html:not([data-force-motion="1"]) *::before,
+  html:not([data-force-motion="1"]) *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
   }
 
-  [data-reveal] {
+  html:not([data-force-motion="1"]) [data-reveal] {
     opacity: 1;
     transform: none;
   }

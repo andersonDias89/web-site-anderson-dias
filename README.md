@@ -53,6 +53,23 @@ Variáveis opcionais do repositório:
 
 Depois de criar o repositório no GitHub, habilite Pages com source `GitHub Actions` em `Settings > Pages` caso o deploy ainda não esteja ativo.
 
+## Cache de assets
+
+Este projeto inclui:
+
+- `public/_headers` com cache longo para `/_next/static/*` e `/images/*` em hosts que suportam esse formato (ex.: Netlify e Cloudflare Pages).
+- `public/sw.js` + registro no layout para cache de assets no navegador em visitas recorrentes.
+
+Importante: no GitHub Pages, os cabeçalhos HTTP são gerenciados pela plataforma. O arquivo `_headers` não altera o `Cache-Control` lá.
+
+## Debug de animação em dev
+
+Se a animação de reveal não aparecer no `npm run dev`, teste:
+
+- `http://localhost:3000/?motion=1`
+
+Isso força animação apenas em desenvolvimento, útil quando o navegador/sistema está com `prefers-reduced-motion: reduce`.
+
 ## Revisão técnica aplicada
 
 - Build estático habilitado com `output: "export"` e `trailingSlash: true`.

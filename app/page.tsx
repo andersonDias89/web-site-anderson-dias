@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -309,15 +308,27 @@ export default function Home() {
             <Card className="glass-card border-white/10 p-1">
               <CardContent className="p-2.5 sm:p-3">
                 <div className="relative overflow-hidden rounded-2xl border border-white/10">
-                  <Image
-                    alt="Foto de Anderson Dias, desenvolvedor full stack"
-                    className="h-auto w-full object-cover"
-                    priority
-                    sizes="(max-width: 1024px) 100vw, 40vw"
-                    src={withBasePath(PROFILE_IMAGE_PATH)}
-                    width={1086}
-                    height={1448}
-                  />
+                  <picture>
+                    <source
+                      sizes="(max-width: 1024px) 100vw, 40vw"
+                      srcSet={[
+                        `${withBasePath("/images/anderson-dias-profile-360.webp")} 360w`,
+                        `${withBasePath("/images/anderson-dias-profile-700.webp")} 700w`,
+                      ].join(", ")}
+                      type="image/webp"
+                    />
+                    <img
+                      alt="Foto de Anderson Dias, desenvolvedor full stack"
+                      className="h-auto w-full object-cover"
+                      decoding="async"
+                      fetchPriority="high"
+                      height={1448}
+                      loading="eager"
+                      sizes="(max-width: 1024px) 100vw, 40vw"
+                      src={withBasePath(PROFILE_IMAGE_PATH)}
+                      width={1086}
+                    />
+                  </picture>
                 </div>
                 <div className="mt-4 space-y-2">
                   <div className="flex items-center justify-between gap-3">

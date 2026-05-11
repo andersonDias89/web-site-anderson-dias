@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { JetBrains_Mono, Manrope } from "next/font/google";
 import { ScrollReveal } from "@/components/scroll-reveal";
+import { ServiceWorkerRegister } from "@/components/service-worker-register";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL, withBasePath } from "@/lib/site";
 import "./globals.css";
 
@@ -97,6 +98,7 @@ export default function RootLayout({
     >
       <body className="min-h-full bg-background text-foreground">
         <ScrollReveal />
+        <ServiceWorkerRegister />
         {children}
       </body>
     </html>

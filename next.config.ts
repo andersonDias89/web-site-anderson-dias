@@ -16,6 +16,9 @@ const nextConfig: NextConfig = {
   output: "export",
   poweredByHeader: false,
   trailingSlash: true,
+  experimental: {
+    inlineCss: true,
+  },
   ...(basePath ? { basePath } : {}),
   images: {
     formats: ["image/avif", "image/webp"],

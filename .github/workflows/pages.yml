@@ -60,6 +60,7 @@ jobs:
       - name: Build static export
         env:
           NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION: ${{ vars.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION }}
+          NEXT_PUBLIC_SW_VERSION: ${{ github.sha }}
           NEXT_PUBLIC_WHATSAPP_URL: ${{ vars.NEXT_PUBLIC_WHATSAPP_URL }}
         run: npm run build
 
