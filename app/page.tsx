@@ -430,30 +430,28 @@ export default function Home() {
                   Canal principal para networking, histórico técnico e contratação.
                 </CardDescription>
               </CardHeader>
-              <CardContent>
-                <div className="glass-card rounded-xl border border-white/10 p-4">
-                  <p className="font-medium">Fluxo de trabalho</p>
-                  <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
-                    <li className="flex items-start gap-2">
-                      <span className="mt-1.5 size-1.5 rounded-full bg-cyan-300" />
-                      <span>Diagnóstico rápido para mapear prioridade e objetivo do projeto.</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="mt-1.5 size-1.5 rounded-full bg-cyan-300" />
-                      <span>Execução em etapas curtas com visibilidade clara de cada entrega.</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="mt-1.5 size-1.5 rounded-full bg-cyan-300" />
-                      <span>Publicação e evolução contínua com foco em performance real.</span>
-                    </li>
-                  </ul>
-                  <Button asChild className="mt-4 bg-emerald-400 text-black hover:bg-emerald-300" size="sm">
-                    <a href={WHATSAPP_URL} rel="noopener noreferrer" target="_blank">
-                      <WhatsAppIcon className="mr-1.5 size-4" />
-                      Iniciar conversa
-                    </a>
-                  </Button>
-                </div>
+              <CardContent className="space-y-4">
+                <p className="font-medium">Fluxo de trabalho</p>
+                <ul className="space-y-2 text-sm text-muted-foreground">
+                  <li className="flex items-start gap-2">
+                    <span className="mt-1.5 size-1.5 rounded-full bg-cyan-300" />
+                    <span>Diagnóstico rápido para mapear prioridade e objetivo do projeto.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="mt-1.5 size-1.5 rounded-full bg-cyan-300" />
+                    <span>Execução em etapas curtas com visibilidade clara de cada entrega.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="mt-1.5 size-1.5 rounded-full bg-cyan-300" />
+                    <span>Publicação e evolução contínua com foco em performance real.</span>
+                  </li>
+                </ul>
+                <Button asChild className="bg-emerald-400 text-black hover:bg-emerald-300" size="sm">
+                  <a href={WHATSAPP_URL} rel="noopener noreferrer" target="_blank">
+                    <WhatsAppIcon className="mr-1.5 size-4" />
+                    Iniciar conversa
+                  </a>
+                </Button>
               </CardContent>
             </Card>
           </Reveal>
@@ -578,7 +576,11 @@ export default function Home() {
                   {faqItems.map((item) => (
                     <AccordionItem key={item.question} value={item.question}>
                       <AccordionTrigger>{item.question}</AccordionTrigger>
-                      <AccordionContent>{item.answer}</AccordionContent>
+                      <AccordionContent>
+                        <div className="rounded-lg border border-cyan-400/15 bg-cyan-500/8 px-3 py-2.5 text-cyan-50/95">
+                          {item.answer}
+                        </div>
+                      </AccordionContent>
                     </AccordionItem>
                   ))}
                 </Accordion>

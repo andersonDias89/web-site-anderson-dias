@@ -130,23 +130,6 @@ export function SiteHeader({ navLinks, whatsappUrl }: SiteHeaderProps) {
               </a>
             ))}
           </nav>
-          <div className="mx-auto w-full max-w-6xl px-4 pb-4 sm:px-6 sm:pb-5">
-            <Button
-              asChild
-              className="h-11 w-full rounded-full bg-emerald-400 px-5 text-base font-semibold text-black hover:bg-emerald-300"
-            >
-              <a
-                href={whatsappUrl}
-                onClick={closeMenu}
-                rel="noopener noreferrer"
-                tabIndex={mobileTabIndex}
-                target="_blank"
-              >
-                <WhatsAppIcon className="mr-1.5 size-4" />
-                Chamar no WhatsApp
-              </a>
-            </Button>
-          </div>
         </div>
       </div>
     </header>
